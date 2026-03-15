@@ -1,9 +1,16 @@
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="hero-grid-bg" />
+      <video
+        className="hero-video"
+        src={`${import.meta.env.BASE_URL}hero.mp4`}
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className="hero-video-overlay" />
       <div className="hero-accent-bar" />
-      <div className="hero-accent-circle" />
 
       <div className="hero-content">
         <div className="hero-tag">
