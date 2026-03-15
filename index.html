@@ -3,672 +3,773 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YANO Heavy Equipment Rental | CALABARZON</title>
-    <meta name="description" content="YANO Heavy Equipment Rental — Serving all of CALABARZON with reliable machines and skilled operators. Rain or shine, we keep your project moving.">
+    <title>YANO Heavy Equipment Rental | CALABARZON, Philippines</title>
+    <meta name="description" content="YANO Heavy Equipment Rental — Reliable machines and skilled operators serving all of CALABARZON. Rain or shine, we keep your project moving.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ── TOKENS ── */
         :root {
-            --black: #080808;
-            --steel: #141418;
-            --steel-mid: #1E2028;
+            --white: #FFFFFF;
+            --off-white: #F7F6F3;
+            --black: #0A0A0A;
             --yellow: #F5B800;
-            --yellow-dark: #D49900;
-            --orange: #E05C1A;
-            --white: #F2EDE4;
-            --gray-light: #9A9898;
-            --gray-mid: #5A5858;
+            --yellow-dk: #D49900;
+            --muted: #6B6969;
+            --border: rgba(10,10,10,0.10);
+            --border-md: rgba(10,10,10,0.15);
+            --nav-h: 76px;
+            --pad: clamp(24px, 6vw, 80px);
+            --sec: clamp(72px, 9vw, 120px);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            background: var(--black);
-            color: var(--white);
-            font-family: 'DM Sans', sans-serif;
-            overflow-x: hidden;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { background: var(--white); color: var(--black); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
 
         /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 0 56px;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.3s, border-bottom 0.3s;
-            border-bottom: 2px solid transparent;
+        #nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            height: var(--nav-h); padding: 0 var(--pad);
+            display: flex; align-items: center; justify-content: space-between;
+            background: transparent;
+            transition: background .35s, box-shadow .35s;
         }
-        nav.scrolled {
-            background: rgba(8,8,8,0.96);
-            border-bottom-color: var(--yellow);
-            backdrop-filter: blur(12px);
+        #nav.solid {
+            background: rgba(255,255,255,.97);
+            box-shadow: 0 1px 0 var(--border);
+            backdrop-filter: blur(16px);
         }
-        .nav-logo { display: flex; flex-direction: column; line-height: 1; }
-        .nav-logo .brand {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 34px; color: var(--yellow); letter-spacing: 4px;
+
+        .nav-logo { display: flex; align-items: center; gap: 12px; }
+        .nav-badge {
+            width: 44px; height: 44px; background: var(--black);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .nav-logo .tagline {
-            font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-            color: var(--gray-light); font-weight: 500;
+        .nav-badge span {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: 17px; color: var(--white); letter-spacing: 1px;
         }
-        .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+        .nav-brand {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 18px; letter-spacing: .4px;
+            color: var(--white); transition: color .35s;
+        }
+        #nav.solid .nav-brand { color: var(--black); }
+
+        .nav-links { display: flex; align-items: center; gap: 36px; }
         .nav-links a {
-            color: var(--white); text-decoration: none;
-            font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
-            text-transform: uppercase; opacity: 0.75;
-            transition: opacity 0.2s, color 0.2s;
+            font-size: 15px; font-weight: 500;
+            color: rgba(255,255,255,.8);
+            position: relative; padding-bottom: 4px;
+            transition: color .2s;
         }
-        .nav-links a:hover { opacity: 1; color: var(--yellow); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--yellow);
+            transition: width .25s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        #nav.solid .nav-links a { color: rgba(10,10,10,.6); }
+        #nav.solid .nav-links a:hover, #nav.solid .nav-links a.active { color: var(--black); }
+
         .nav-cta {
-            background: var(--yellow) !important; color: var(--black) !important;
-            padding: 10px 24px; font-weight: 700 !important;
-            opacity: 1 !important; transition: background 0.2s !important;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--black); color: var(--white) !important;
+            padding: 11px 22px; font-size: 14px; font-weight: 600;
+            border: 2px solid var(--black);
+            transition: background .2s, color .2s, border-color .2s;
         }
-        .nav-cta:hover { background: var(--yellow-dark) !important; }
+        #nav:not(.solid) .nav-cta { background: transparent; border-color: rgba(255,255,255,.5); }
+        #nav:not(.solid) .nav-cta:hover { background: rgba(255,255,255,.15); }
+        #nav.solid .nav-cta:hover { background: transparent; color: var(--black) !important; }
+
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px; background: var(--white);
+            transition: background .35s, transform .3s, opacity .3s;
+        }
+        #nav.solid .hamburger span { background: var(--black); }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none; position: fixed;
+            top: var(--nav-h); left: 0; right: 0; z-index: 999;
+            background: var(--white); flex-direction: column;
+            padding: 28px var(--pad) 36px;
+            border-top: 1px solid var(--border);
+            box-shadow: 0 16px 32px rgba(0,0,0,.1);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-size: 18px; font-weight: 500; color: var(--black);
+            padding: 14px 0; border-bottom: 1px solid var(--border);
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-cta {
+            margin-top: 20px;
+            display: inline-flex !important; align-items: center; gap: 8px;
+            background: var(--black) !important; color: var(--white) !important;
+            padding: 14px 24px; border-bottom: none !important;
+        }
 
         /* ── HERO ── */
         #hero {
-            height: 100vh; min-height: 700px;
+            height: 100vh; min-height: 680px;
             position: relative; display: flex; align-items: center; overflow: hidden;
         }
         .hero-bg {
             position: absolute; inset: 0;
             background: url('image.png') center / cover no-repeat;
+            transform: scale(1.04); transition: transform 8s ease;
         }
-        .hero-bg::after {
-            content: '';
+        #hero.loaded .hero-bg { transform: scale(1); }
+        .hero-overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(
-                105deg,
-                rgba(8,8,8,0.97) 0%,
-                rgba(8,8,8,0.88) 55%,
-                rgba(8,8,8,0.35) 100%
-            );
-        }
-        .hero-stripe {
-            position: absolute; top: 0; right: 0;
-            width: 6px; height: 100%; background: var(--yellow);
+            background: linear-gradient(to right,
+                rgba(10,10,10,.88) 0%,
+                rgba(10,10,10,.72) 45%,
+                rgba(10,10,10,.35) 75%,
+                rgba(10,10,10,.15) 100%);
         }
         .hero-content {
             position: relative; z-index: 1;
-            padding: 0 80px; max-width: 920px;
+            padding: 0 var(--pad); padding-top: var(--nav-h);
+            max-width: 860px;
         }
-        .hero-eyebrow {
-            display: inline-flex; align-items: center;
-            gap: 12px; margin-bottom: 28px;
+
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px;
+            opacity: 0; transform: translateY(14px);
+            animation: fadeUp .6s ease .3s forwards;
         }
-        .hero-eyebrow .dot {
-            width: 8px; height: 8px; background: var(--yellow);
-            border-radius: 50%; animation: pulse 2s infinite;
+        .hero-dot {
+            width: 7px; height: 7px; background: var(--yellow); border-radius: 50%;
+            animation: dot-pulse 2s ease infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%       { opacity: 0.4; transform: scale(1.5); }
+        @keyframes dot-pulse {
+            0%,100% { opacity:1; transform:scale(1); box-shadow:0 0 0 0 rgba(245,184,0,.4); }
+            50% { opacity:.7; transform:scale(1.3); box-shadow:0 0 0 6px rgba(245,184,0,0); }
         }
-        .hero-eyebrow span {
-            font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-            color: var(--yellow); font-weight: 700;
+        .hero-tag span {
+            font-size: 11px; font-weight: 600; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--yellow);
         }
+
         .hero-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(68px, 10.5vw, 136px);
-            line-height: 0.9; letter-spacing: 2px; margin-bottom: 12px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: clamp(58px, 9.5vw, 118px);
+            line-height: .92; letter-spacing: -.5px; color: var(--white);
+            margin-bottom: 24px;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp .7s ease .5s forwards;
         }
-        .hero-title .accent { color: var(--yellow); display: block; }
-        .hero-subtitle {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(22px, 3.5vw, 44px);
-            color: var(--gray-light); letter-spacing: 4px; margin-bottom: 36px;
+        .hero-sub {
+            font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7; font-weight: 400;
+            color: rgba(255,255,255,.68); max-width: 520px; margin-bottom: 44px;
+            opacity: 0; transform: translateY(14px);
+            animation: fadeUp .6s ease .75s forwards;
         }
-        .hero-desc {
-            font-size: 16px; line-height: 1.75;
-            color: rgba(242,237,228,0.7); max-width: 540px; margin-bottom: 52px;
+        .hero-btns {
+            display: flex; gap: 14px; flex-wrap: wrap;
+            opacity: 0; transform: translateY(14px);
+            animation: fadeUp .6s ease .95s forwards;
         }
-        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
 
-        .btn-primary {
-            background: var(--yellow); color: var(--black);
-            font-size: 13px; font-weight: 700; letter-spacing: 2px;
-            text-transform: uppercase; padding: 18px 40px;
-            text-decoration: none; display: inline-block;
-            transition: background 0.2s, transform 0.2s;
+        .btn-solid {
+            background: var(--white); color: var(--black);
+            font-size: 14px; font-weight: 700; letter-spacing: .5px;
+            padding: 16px 36px; border: 2px solid var(--white);
+            display: inline-block; transition: background .2s, border-color .2s, transform .2s;
         }
-        .btn-primary:hover { background: var(--yellow-dark); transform: translateY(-2px); }
-
-        .btn-secondary {
+        .btn-solid:hover { background: var(--yellow); border-color: var(--yellow); transform: translateY(-2px); }
+        .btn-outline {
             background: transparent; color: var(--white);
-            font-size: 13px; font-weight: 600; letter-spacing: 2px;
-            text-transform: uppercase; padding: 17px 40px;
-            text-decoration: none; display: inline-block;
-            border: 1.5px solid rgba(242,237,228,0.3);
-            transition: border-color 0.2s, color 0.2s, transform 0.2s;
+            font-size: 14px; font-weight: 600; letter-spacing: .5px;
+            padding: 16px 36px; border: 2px solid rgba(255,255,255,.4);
+            display: inline-block; transition: border-color .2s, color .2s, transform .2s;
         }
-        .btn-secondary:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+        .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
 
-        .hero-phones {
-            display: flex; gap: 40px; margin-top: 52px;
-            padding-top: 52px; border-top: 1px solid rgba(242,237,228,0.1);
+        .hero-scroll-hint {
+            position: absolute; bottom: 36px; left: var(--pad);
+            display: flex; align-items: center; gap: 12px;
+            opacity: 0; animation: fadeUp .6s ease 1.3s forwards;
         }
-        .phone-item { display: flex; flex-direction: column; gap: 5px; }
-        .phone-label {
-            font-size: 10px; letter-spacing: 2.5px;
-            text-transform: uppercase; color: var(--gray-light);
+        .hero-scroll-hint div { width: 32px; height: 1px; background: rgba(255,255,255,.3); }
+        .hero-scroll-hint span {
+            font-size: 10px; font-weight: 600; letter-spacing: 3px;
+            text-transform: uppercase; color: rgba(255,255,255,.3);
         }
-        .phone-number {
-            font-family: 'Bebas Neue', sans-serif; font-size: 24px;
-            color: var(--yellow); letter-spacing: 2px;
-            text-decoration: none; transition: color 0.2s;
-        }
-        .phone-number:hover { color: var(--white); }
+
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
         /* ── CAUTION STRIPE ── */
-        .caution-stripe {
-            height: 8px;
-            background: repeating-linear-gradient(
-                -45deg,
-                var(--yellow) 0px, var(--yellow) 10px,
-                var(--black) 10px, var(--black) 20px
-            );
+        .stripe {
+            height: 7px;
+            background: repeating-linear-gradient(-45deg,
+                var(--yellow) 0, var(--yellow) 10px,
+                var(--black) 10px, var(--black) 20px);
         }
 
         /* ── STATS ── */
         #stats {
             background: var(--yellow);
-            padding: 44px 80px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: grid; grid-template-columns: repeat(4, 1fr);
         }
-        .stat-item {
-            text-align: center; padding: 16px;
-            border-right: 1px solid rgba(0,0,0,0.15);
+        .stat {
+            padding: 40px 24px; text-align: center;
+            border-right: 1px solid rgba(0,0,0,.12);
         }
-        .stat-item:last-child { border-right: none; }
-        .stat-number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 60px; color: var(--black); line-height: 1; display: block;
+        .stat:last-child { border-right: none; }
+        .stat-n {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: 56px; line-height: 1;
+            letter-spacing: -1px; display: block; color: var(--black);
         }
-        .stat-label {
+        .stat-l {
             font-size: 11px; font-weight: 700; letter-spacing: 2px;
-            text-transform: uppercase; color: rgba(0,0,0,0.55); margin-top: 6px;
+            text-transform: uppercase; color: rgba(0,0,0,.45); margin-top: 8px;
         }
 
         /* ── SECTION COMMONS ── */
-        section { padding: 104px 80px; }
-
-        .section-eyebrow {
-            font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-            color: var(--yellow); font-weight: 700; margin-bottom: 16px;
+        .sec-pad { padding: var(--sec) var(--pad); }
+        .eyebrow {
+            font-size: 11px; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--yellow-dk); margin-bottom: 14px;
         }
-        .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(44px, 6vw, 76px); line-height: 0.93;
-            letter-spacing: 1px; margin-bottom: 20px;
+        .sec-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: clamp(42px, 5.5vw, 72px);
+            line-height: .93; letter-spacing: -.5px; color: var(--black);
         }
-        .section-subtitle {
-            color: rgba(242,237,228,0.6); font-size: 16px;
-            line-height: 1.75; max-width: 480px;
+        .sec-desc {
+            font-size: 16px; color: var(--muted); line-height: 1.75;
+            max-width: 480px; margin-top: 16px;
         }
-        .section-header {
+        .sec-header {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 60px; align-items: end; margin-bottom: 64px;
+            gap: 48px; align-items: end; margin-bottom: 60px;
         }
 
         /* ── SERVICES ── */
-        #services { background: var(--steel); }
+        #services { background: var(--off-white); }
 
-        .services-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+        .svc-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px; background: var(--border-md);
+            border: 1.5px solid var(--border-md);
         }
-        .service-card {
-            background: var(--steel-mid); padding: 52px 44px;
-            position: relative; overflow: hidden; cursor: default;
-            transition: background 0.3s;
+        .svc-card {
+            background: var(--white); padding: 48px 40px;
+            position: relative; overflow: hidden; transition: background .3s;
         }
-        .service-card::before {
+        .svc-card::after {
             content: ''; position: absolute; bottom: 0; left: 0;
             width: 0; height: 3px; background: var(--yellow);
-            transition: width 0.4s ease;
+            transition: width .4s;
         }
-        .service-card:hover::before { width: 100%; }
-        .service-card:hover { background: #252830; }
+        .svc-card:hover::after { width: 100%; }
+        .svc-card:hover { background: #fafaf8; }
+        .svc-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: 12px; letter-spacing: 2px;
+            color: rgba(10,10,10,.18); margin-bottom: 24px;
+        }
+        .svc-icon {
+            width: 52px; height: 52px; background: var(--off-white);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 22px; transition: background .3s;
+        }
+        .svc-card:hover .svc-icon { background: var(--yellow); }
+        .svc-icon svg { width: 26px; height: 26px; stroke: var(--black); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .svc-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 26px; color: var(--black); margin-bottom: 10px;
+        }
+        .svc-desc { font-size: 14px; line-height: 1.75; color: var(--muted); }
 
-        .service-icon { font-size: 52px; margin-bottom: 28px; display: block; }
-        .service-name {
-            font-family: 'Bebas Neue', sans-serif; font-size: 30px;
-            letter-spacing: 1px; margin-bottom: 14px; color: var(--white);
-        }
-        .service-desc { font-size: 14px; line-height: 1.75; color: rgba(242,237,228,0.5); }
+        /* ── ABOUT / WHY ── */
+        #about { display: grid; grid-template-columns: 1fr 1fr; }
 
-        /* ── WHY YANO ── */
-        #why { background: var(--black); }
+        .about-left {
+            background: var(--black);
+            padding: var(--sec) var(--pad);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .about-left .eyebrow { color: var(--yellow); }
+        .about-left .sec-title { color: var(--white); margin-bottom: 24px; }
+        .about-left > p {
+            font-size: 16px; line-height: 1.8;
+            color: rgba(255,255,255,.55); max-width: 400px;
+        }
+        .about-arrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-top: 32px; font-size: 13px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase; color: var(--yellow);
+            transition: gap .2s;
+        }
+        .about-arrow:hover { gap: 16px; }
+        .about-arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
-        .why-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px;
+        .about-right { display: grid; grid-template-columns: 1fr 1fr; }
+        .why-card {
+            padding: 48px 36px;
+            border-bottom: 1.5px solid var(--border);
+            border-right: 1.5px solid var(--border);
+            transition: background .3s;
         }
-        .why-item {
-            padding: 60px 56px; background: var(--steel);
-            display: flex; gap: 28px; align-items: flex-start;
-            transition: background 0.3s;
+        .why-card:nth-child(even) { border-right: none; }
+        .why-card:nth-child(n+3) { border-bottom: none; }
+        .why-card:hover { background: var(--off-white); }
+        .why-n {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: 44px; line-height: 1;
+            color: var(--yellow); opacity: .35; margin-bottom: 18px;
         }
-        .why-item:hover { background: var(--steel-mid); }
-        .why-number {
-            font-family: 'Bebas Neue', sans-serif; font-size: 68px;
-            color: var(--yellow); opacity: 0.18; line-height: 1;
-            flex-shrink: 0; width: 64px;
+        .why-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 22px; color: var(--black); margin-bottom: 10px;
         }
-        .why-content h3 {
-            font-family: 'Bebas Neue', sans-serif; font-size: 30px;
-            letter-spacing: 1px; margin-bottom: 14px;
-        }
-        .why-content p { font-size: 14px; line-height: 1.75; color: rgba(242,237,228,0.55); }
+        .why-desc { font-size: 14px; line-height: 1.75; color: var(--muted); }
 
         /* ── GALLERY ── */
-        #gallery { background: var(--steel); }
+        #gallery { background: var(--off-white); }
 
-        .gallery-grid {
+        .gal-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: 300px 300px;
-            gap: 2px; margin-top: 64px;
+            grid-template-columns: 5fr 3fr 3fr;
+            grid-template-rows: 280px 280px;
+            gap: 2px; margin-top: 60px;
         }
-        .gallery-item {
-            overflow: hidden; position: relative; background: var(--steel-mid);
-        }
-        .gallery-item:first-child { grid-row: span 2; }
-        .gallery-item img {
+        .gal-item { overflow: hidden; position: relative; background: #e0dfdc; }
+        .gal-item:first-child { grid-row: span 2; }
+        .gal-item img {
             width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s ease; filter: grayscale(15%);
+            transition: transform .6s; filter: grayscale(20%);
         }
-        .gallery-item:hover img { transform: scale(1.06); filter: grayscale(0%); }
-        .gallery-item .overlay {
+        .gal-item:hover img { transform: scale(1.06); filter: none; }
+        .gal-overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
-            opacity: 0; transition: opacity 0.3s;
+            background: linear-gradient(to top, rgba(10,10,10,.5) 0%, transparent 55%);
+            opacity: 0; transition: opacity .3s;
         }
-        .gallery-item:hover .overlay { opacity: 1; }
-        .gallery-empty {
+        .gal-item:hover .gal-overlay { opacity: 1; }
+        .gal-empty {
             display: flex; align-items: center; justify-content: center;
-            color: rgba(242,237,228,0.18); font-size: 11px;
-            letter-spacing: 2px; text-transform: uppercase;
+            font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: rgba(10,10,10,.22);
         }
 
         /* ── CONTACT ── */
-        #contact { background: var(--black); }
+        #contact { background: var(--white); }
 
         .contact-layout {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 80px; align-items: start;
+            gap: 80px; align-items: start; margin-top: 60px;
         }
-        .contact-info { display: flex; flex-direction: column; gap: 40px; }
-        .contact-info-item { display: flex; flex-direction: column; gap: 8px; }
-        .contact-info-label {
-            font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-            color: var(--yellow); font-weight: 700;
+        .cinfo { display: flex; flex-direction: column; }
+        .cblock { padding: 26px 0; border-bottom: 1.5px solid var(--border); }
+        .cblock:first-child { padding-top: 0; }
+        .clabel {
+            font-size: 10px; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
         }
-        .contact-info-value {
-            font-family: 'Bebas Neue', sans-serif; font-size: 30px;
-            color: var(--white); letter-spacing: 1px;
-            text-decoration: none; transition: color 0.2s;
+        .cval {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 28px; color: var(--black);
+            transition: color .2s;
         }
-        .contact-info-value:hover { color: var(--yellow); }
-        .contact-info-value.email {
-            font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 500;
+        .cval:hover { color: var(--yellow-dk); }
+        .cval-email { font-family: 'Barlow', sans-serif; font-size: 17px; font-weight: 500; }
+        .cactions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+        .btn-wa {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: #25D366; color: var(--white);
+            font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 13px 22px; transition: background .2s, transform .2s;
         }
-
-        .whatsapp-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: #25D366; color: white; padding: 14px 28px;
-            font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
-            text-transform: uppercase; text-decoration: none;
-            transition: background 0.2s, transform 0.2s; width: fit-content;
-        }
-        .whatsapp-btn:hover { background: #1FBA5B; transform: translateY(-2px); }
-
+        .btn-wa:hover { background: #1FBA5B; transform: translateY(-2px); }
         .coverage {
-            padding: 28px 32px; background: var(--steel);
-            border-left: 4px solid var(--yellow);
+            margin-top: 32px; padding: 22px 26px;
+            background: var(--off-white); border-left: 3px solid var(--yellow);
         }
         .coverage h4 {
-            font-family: 'Bebas Neue', sans-serif; font-size: 20px;
-            letter-spacing: 2px; margin-bottom: 10px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 15px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--black); margin-bottom: 7px;
         }
-        .coverage p { font-size: 14px; color: rgba(242,237,228,0.55); line-height: 1.65; }
+        .coverage p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-        /* FORM */
-        .contact-form { display: flex; flex-direction: column; gap: 16px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group label {
-            font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-            color: var(--gray-light); font-weight: 700;
+        .cform { display: flex; flex-direction: column; gap: 15px; }
+        .fgroup { display: flex; flex-direction: column; gap: 6px; }
+        .flabel {
+            font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--muted);
         }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            background: var(--steel); border: 1.5px solid rgba(242,237,228,0.1);
-            color: var(--white); padding: 14px 18px;
-            font-family: 'DM Sans', sans-serif; font-size: 15px;
-            outline: none; transition: border-color 0.2s; resize: vertical;
+        .finput, .fselect, .ftextarea {
+            background: var(--off-white); border: 1.5px solid transparent;
+            color: var(--black); padding: 13px 15px;
+            font-family: 'Barlow', sans-serif; font-size: 15px;
+            outline: none; transition: border-color .2s, background .2s;
         }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder { color: rgba(242,237,228,0.22); }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus { border-color: var(--yellow); }
-        .form-group select { appearance: none; cursor: pointer; }
-        .form-group select option { background: var(--steel-mid); }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .form-submit {
-            background: var(--yellow); color: var(--black);
-            font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
-            letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px;
-            border: none; cursor: pointer; transition: background 0.2s, transform 0.2s;
-            margin-top: 8px;
+        .finput::placeholder, .ftextarea::placeholder { color: rgba(10,10,10,.22); }
+        .finput:focus, .fselect:focus, .ftextarea:focus {
+            border-color: var(--yellow); background: var(--white);
         }
-        .form-submit:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+        .fselect { appearance: none; cursor: pointer; }
+        .ftextarea { resize: vertical; }
+        .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .fsubmit {
+            background: var(--black); color: var(--white);
+            border: 2px solid var(--black);
+            font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 16px 40px; cursor: pointer; align-self: flex-start;
+            transition: background .2s, color .2s, border-color .2s, transform .2s;
+        }
+        .fsubmit:hover { background: var(--yellow); color: var(--black); border-color: var(--yellow); transform: translateY(-2px); }
 
         /* ── FOOTER ── */
         footer {
-            background: var(--steel); border-top: 3px solid var(--yellow);
-            padding: 56px 80px;
-            display: grid; grid-template-columns: 1.2fr 1fr 1fr;
-            gap: 48px; align-items: start;
+            background: var(--black); border-top: 4px solid var(--yellow);
+            padding: 64px var(--pad);
+            display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px;
         }
-        .footer-brand .brand {
-            font-family: 'Bebas Neue', sans-serif; font-size: 44px;
-            color: var(--yellow); letter-spacing: 4px; line-height: 1;
+        .footer-badge {
+            width: 46px; height: 46px; background: var(--yellow);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
         }
-        .footer-brand .tagline {
-            font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-            color: var(--gray-light); margin-top: 6px;
+        .footer-badge span {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800; font-size: 18px; color: var(--black); letter-spacing: 1px;
         }
-        .footer-brand p {
-            font-size: 13px; color: rgba(242,237,228,0.4); margin-top: 20px;
-            line-height: 1.75; max-width: 270px;
+        .footer-brand p { font-size: 13px; color: rgba(255,255,255,.32); line-height: 1.8; max-width: 260px; }
+        .fcol-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 15px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--white); margin-bottom: 22px;
         }
-        .footer-col h4 {
-            font-family: 'Bebas Neue', sans-serif; font-size: 18px;
-            letter-spacing: 2px; color: var(--white); margin-bottom: 22px;
-        }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .footer-col ul a {
-            font-size: 13px; color: rgba(242,237,228,0.4);
-            text-decoration: none; transition: color 0.2s;
-        }
-        .footer-col ul a:hover { color: var(--yellow); }
-
+        .fcol ul { display: flex; flex-direction: column; gap: 11px; }
+        .fcol ul a { font-size: 14px; color: rgba(255,255,255,.35); transition: color .2s; }
+        .fcol ul a:hover { color: var(--yellow); }
         .footer-bottom {
-            background: var(--black); padding: 22px 80px;
+            background: #060606; padding: 20px var(--pad);
             display: flex; justify-content: space-between; align-items: center;
-            border-top: 1px solid rgba(242,237,228,0.05);
+            border-top: 1px solid rgba(255,255,255,.05);
         }
-        .footer-bottom p { font-size: 12px; color: rgba(242,237,228,0.28); }
+        .footer-bottom p { font-size: 12px; color: rgba(255,255,255,.2); }
 
-        /* ── SCROLL ANIMATIONS ── */
-        .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* ── REVEAL ANIMATIONS ── */
+        [data-r] {
+            opacity: 0; transform: translateY(26px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        [data-r].on { opacity: 1; transform: none; }
+        [data-d="1"] { transition-delay: .1s; }
+        [data-d="2"] { transition-delay: .2s; }
+        [data-d="3"] { transition-delay: .3s; }
+        [data-d="4"] { transition-delay: .4s; }
+        [data-d="5"] { transition-delay: .5s; }
+        [data-d="6"] { transition-delay: .6s; }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 960px) {
-            nav { padding: 0 24px; }
-            .nav-links { display: none; }
-            .hero-content { padding: 0 24px; }
-            #stats { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
-            section { padding: 72px 24px; }
-            .section-header { grid-template-columns: 1fr; gap: 20px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .why-grid { grid-template-columns: 1fr; }
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 220px 220px 220px;
-            }
-            .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
-            .contact-layout { grid-template-columns: 1fr; gap: 52px; }
-            footer { grid-template-columns: 1fr; padding: 48px 24px; }
-            .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
-            .form-row { grid-template-columns: 1fr; }
-            .hero-phones { gap: 24px; }
+        @media (max-width: 1024px) {
+            #about { grid-template-columns: 1fr; }
+            .about-left { padding: 72px var(--pad); }
+            .svc-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .hamburger { display: flex; }
+            #stats { grid-template-columns: repeat(2, 1fr); }
+            .stat:nth-child(odd) { border-right: 1px solid rgba(0,0,0,.12); }
+            .stat { border-right: none; border-bottom: 1px solid rgba(0,0,0,.12); }
+            .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+            .sec-header { grid-template-columns: 1fr; gap: 16px; }
+            .svc-grid { grid-template-columns: 1fr; }
+            .about-right { grid-template-columns: 1fr; }
+            .why-card { border-right: none !important; }
+            .why-card:nth-child(n+4) { border-bottom: none; }
+            .why-card:nth-child(3) { border-bottom: 1.5px solid var(--border); }
+            .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+            .gal-item:first-child { grid-column: span 2; grid-row: span 1; }
+            .contact-layout { grid-template-columns: 1fr; gap: 48px; margin-top: 40px; }
+            .frow { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; gap: 36px; padding: 48px var(--pad); }
+            .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 52px; }
+            .hero-btns { flex-direction: column; }
+            .btn-solid, .btn-outline { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav id="navbar">
-    <div class="nav-logo">
-        <span class="brand">YANO</span>
-        <span class="tagline">Heavy Equipment Rental</span>
+<!-- NAV -->
+<nav id="nav">
+    <a href="#hero" class="nav-logo">
+        <div class="nav-badge"><span>YA</span></div>
+        <span class="nav-brand">YANO Equipment Rentals</span>
+    </a>
+    <div class="nav-links">
+        <a href="#hero" class="active">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
     </div>
-    <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why">Why YANO</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="tel:09171338462" class="nav-cta">Call Now</a></li>
-    </ul>
+    <a href="tel:09171338462" class="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0917-133-8462
+    </a>
+    <button class="hamburger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
 
-<!-- ── HERO ── -->
+<div class="mobile-menu" id="mmenu">
+    <a href="#hero" onclick="closeMenu()">Home</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="tel:09171338462" class="mobile-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0917-133-8462
+    </a>
+</div>
+
+<!-- HERO -->
 <section id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-stripe"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-        <div class="hero-eyebrow">
-            <span class="dot"></span>
-            <span>Now Serving ALL of CALABARZON</span>
+        <div class="hero-tag">
+            <span class="hero-dot"></span>
+            <span>Now Serving All of CALABARZON</span>
         </div>
-        <h1 class="hero-title">
-            Heavy Equipment
-            <span class="accent">You Can Count On</span>
-        </h1>
-        <p class="hero-desc">
-            Rain or shine, YANO Heavy Equipment Rental delivers reliable machines and skilled operators across CALABARZON. Your project doesn't stop — and neither do we.
-        </p>
-        <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Get a Free Quote</a>
-            <a href="tel:09171338462" class="btn-secondary">Call Now</a>
+        <h1 class="hero-title">Heavy Equipment<br>for Every Project</h1>
+        <p class="hero-sub">Professional-grade machinery with flexible rental terms and skilled operators. Rain or shine, YANO keeps your project moving.</p>
+        <div class="hero-btns">
+            <a href="#services" class="btn-solid">View Our Fleet</a>
+            <a href="#contact" class="btn-outline">Get a Quote</a>
         </div>
-        <div class="hero-phones">
-            <div class="phone-item">
-                <span class="phone-label">Main Line</span>
-                <a href="tel:09171338462" class="phone-number">0917-133-8462</a>
-            </div>
-            <div class="phone-item">
-                <span class="phone-label">Alternative</span>
-                <a href="tel:09171361046" class="phone-number">0917-136-1046</a>
-            </div>
-        </div>
+    </div>
+    <div class="hero-scroll-hint">
+        <div></div>
+        <span>Scroll to explore</span>
     </div>
 </section>
 
-<div class="caution-stripe"></div>
+<div class="stripe"></div>
 
-<!-- ── STATS ── -->
+<!-- STATS -->
 <div id="stats">
-    <div class="stat-item">
-        <span class="stat-number" data-target="10">0</span>
-        <span class="stat-label">Years of Service</span>
+    <div class="stat">
+        <span class="stat-n" data-target="10">0</span>
+        <span class="stat-l">Years of Service</span>
     </div>
-    <div class="stat-item">
-        <span class="stat-number" data-target="50">0</span>
-        <span class="stat-label">Equipment Units</span>
+    <div class="stat">
+        <span class="stat-n" data-target="50">0</span>
+        <span class="stat-l">Equipment Units</span>
     </div>
-    <div class="stat-item">
-        <span class="stat-number" data-target="5">0</span>
-        <span class="stat-label">Provinces Covered</span>
+    <div class="stat">
+        <span class="stat-n" data-target="5">0</span>
+        <span class="stat-l">Provinces Covered</span>
     </div>
-    <div class="stat-item">
-        <span class="stat-number" data-target="500">0</span>
-        <span class="stat-label">Projects Completed</span>
+    <div class="stat">
+        <span class="stat-n" data-target="500">0</span>
+        <span class="stat-l">Projects Completed</span>
     </div>
 </div>
 
-<!-- ── SERVICES ── -->
-<section id="services">
-    <div class="section-header">
+<!-- SERVICES -->
+<section id="services" class="sec-pad">
+    <div class="sec-header">
         <div>
-            <p class="section-eyebrow">What We Offer</p>
-            <h2 class="section-title">Heavy Equipment<br>For Every Job</h2>
+            <p class="eyebrow" data-r>What We Offer</p>
+            <h2 class="sec-title" data-r data-d="1">Heavy Equipment<br>For Every Job</h2>
         </div>
-        <p class="section-subtitle">From excavation to grading, YANO provides the right machine with a skilled operator for your project — delivered on time, every time.</p>
+        <p class="sec-desc" data-r>From excavation to grading, YANO provides the right machine with a skilled operator for your project — delivered on time, every time.</p>
     </div>
-    <div class="services-grid fade-in">
-        <div class="service-card">
-            <span class="service-icon">🚜</span>
-            <h3 class="service-name">Excavators</h3>
-            <p class="service-desc">Full-size and mini excavators for digging, trenching, and demolition work. Available with experienced operators for any terrain.</p>
+    <div class="svc-grid">
+        <div class="svc-card" data-r>
+            <p class="svc-num">01</p>
+            <div class="svc-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="14" width="10" height="7" rx="1"/><rect x="3" y="10" width="7" height="5" rx="1"/><line x1="10" y1="10" x2="17" y2="5"/><line x1="17" y1="5" x2="22" y2="10"/><line x1="19" y1="13" x2="22" y2="10"/></svg>
+            </div>
+            <h3 class="svc-name">Excavators</h3>
+            <p class="svc-desc">Full-size and mini excavators for digging, trenching, and demolition. Available with experienced operators for any terrain.</p>
         </div>
-        <div class="service-card">
-            <span class="service-icon">🏗️</span>
-            <h3 class="service-name">Bulldozers</h3>
-            <p class="service-desc">Heavy-duty bulldozers for land clearing, grading, and earthmoving. Built to handle tough terrain in any weather condition.</p>
+        <div class="svc-card" data-r data-d="1">
+            <p class="svc-num">02</p>
+            <div class="svc-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="10" width="17" height="9" rx="1"/><rect x="3" y="7" width="9" height="5" rx="1"/><rect x="1" y="17" width="19" height="4" rx="1"/><line x1="19" y1="13" x2="23" y2="13"/><line x1="21" y1="9" x2="23" y2="13"/><line x1="21" y1="17" x2="23" y2="13"/></svg>
+            </div>
+            <h3 class="svc-name">Bulldozers</h3>
+            <p class="svc-desc">Heavy-duty bulldozers for land clearing, grading, and earthmoving. Built to handle tough terrain in any weather condition.</p>
         </div>
-        <div class="service-card">
-            <span class="service-icon">🚛</span>
-            <h3 class="service-name">Dump Trucks</h3>
-            <p class="service-desc">High-capacity dump trucks for hauling soil, gravel, and construction materials across all your CALABARZON project sites.</p>
+        <div class="svc-card" data-r data-d="2">
+            <p class="svc-num">03</p>
+            <div class="svc-icon">
+                <svg viewBox="0 0 24 24"><rect x="1" y="8" width="15" height="11" rx="1"/><path d="M16 12h4l3 5v3H16"/><circle cx="5.5" cy="19" r="2"/><circle cx="19.5" cy="19" r="2"/></svg>
+            </div>
+            <h3 class="svc-name">Dump Trucks</h3>
+            <p class="svc-desc">High-capacity dump trucks for hauling soil, gravel, and construction materials across your CALABARZON project sites.</p>
         </div>
-        <div class="service-card">
-            <span class="service-icon">🔧</span>
-            <h3 class="service-name">Backhoe Loaders</h3>
-            <p class="service-desc">Versatile backhoe loaders ideal for road work, utility installation, and general construction tasks.</p>
+        <div class="svc-card" data-r data-d="3">
+            <p class="svc-num">04</p>
+            <div class="svc-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="12" width="12" height="8" rx="1"/><rect x="3" y="8" width="7" height="5" rx="1"/><rect x="1" y="18" width="14" height="3" rx="1"/><path d="M14 14 Q18 10 20 7 L23 9 L21 16"/><path d="M21 16 L17 20"/></svg>
+            </div>
+            <h3 class="svc-name">Backhoe Loaders</h3>
+            <p class="svc-desc">Versatile backhoe loaders ideal for road work, utility installation, and general construction tasks.</p>
         </div>
-        <div class="service-card">
-            <span class="service-icon">⚙️</span>
-            <h3 class="service-name">Road Rollers</h3>
-            <p class="service-desc">Compactors and road rollers for asphalt paving, soil compaction, and road construction projects.</p>
+        <div class="svc-card" data-r data-d="4">
+            <p class="svc-num">05</p>
+            <div class="svc-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="16" r="6"/><circle cx="12" cy="16" r="3"/><rect x="8" y="3" width="8" height="7" rx="1"/><line x1="12" y1="10" x2="12" y2="13"/></svg>
+            </div>
+            <h3 class="svc-name">Road Rollers</h3>
+            <p class="svc-desc">Compactors and road rollers for asphalt paving, soil compaction, and road construction projects.</p>
         </div>
-        <div class="service-card">
-            <span class="service-icon">🏋️</span>
-            <h3 class="service-name">Cranes &amp; Lifts</h3>
-            <p class="service-desc">Mobile cranes and lifting equipment for construction, infrastructure, and industrial applications.</p>
+        <div class="svc-card" data-r data-d="5">
+            <p class="svc-num">06</p>
+            <div class="svc-icon">
+                <svg viewBox="0 0 24 24"><line x1="7" y1="3" x2="7" y2="22"/><line x1="7" y1="5" x2="21" y2="9"/><line x1="21" y1="9" x2="21" y2="14"/><line x1="7" y1="7" x2="3" y2="14"/><rect x="17" y="14" width="7" height="5" rx="1"/><line x1="4" y1="21" x2="10" y2="21"/></svg>
+            </div>
+            <h3 class="svc-name">Cranes &amp; Lifts</h3>
+            <p class="svc-desc">Mobile cranes and lifting equipment for construction, infrastructure, and industrial applications.</p>
         </div>
     </div>
 </section>
 
-<!-- ── WHY YANO ── -->
-<section id="why">
-    <p class="section-eyebrow">Why Choose Us</p>
-    <h2 class="section-title">The YANO Difference</h2>
-    <div class="why-grid fade-in">
-        <div class="why-item">
-            <span class="why-number">01</span>
-            <div class="why-content">
-                <h3>All-Weather Ready</h3>
-                <p>Our equipment and operators are prepared for any condition. Rainy season delays? Not on our watch. We keep your project moving 365 days a year.</p>
-            </div>
+<!-- ABOUT / WHY YANO -->
+<section id="about">
+    <div class="about-left">
+        <p class="eyebrow" data-r>Why Choose Us</p>
+        <h2 class="sec-title" data-r data-d="1">The YANO<br>Difference</h2>
+        <p data-r data-d="2">Over a decade serving construction projects across all five provinces of CALABARZON. From small excavation jobs to large-scale infrastructure builds — YANO delivers.</p>
+        <a href="#contact" class="about-arrow" data-r data-d="3">
+            Start a project with us
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+    <div class="about-right">
+        <div class="why-card" data-r>
+            <div class="why-n">01</div>
+            <h3 class="why-title">All-Weather Ready</h3>
+            <p class="why-desc">Our equipment and operators are prepared for any condition. Rainy season delays? Not on our watch. We run 365 days a year.</p>
         </div>
-        <div class="why-item">
-            <span class="why-number">02</span>
-            <div class="why-content">
-                <h3>Fast Response</h3>
-                <p>We understand urgency in construction. Our team mobilizes quickly across all of CALABARZON so you don't lose a single valuable workday.</p>
-            </div>
+        <div class="why-card" data-r data-d="1">
+            <div class="why-n">02</div>
+            <h3 class="why-title">Fast Response</h3>
+            <p class="why-desc">We mobilize quickly across CALABARZON. Our team deploys so you don't lose a single valuable workday.</p>
         </div>
-        <div class="why-item">
-            <span class="why-number">03</span>
-            <div class="why-content">
-                <h3>Skilled Operators Included</h3>
-                <p>Every machine comes with a certified, experienced operator. No need to source your own — our team arrives ready to work safely and efficiently.</p>
-            </div>
+        <div class="why-card" data-r data-d="2">
+            <div class="why-n">03</div>
+            <h3 class="why-title">Operators Included</h3>
+            <p class="why-desc">Every machine comes with a certified, experienced operator. Our team arrives ready to work safely and efficiently.</p>
         </div>
-        <div class="why-item">
-            <span class="why-number">04</span>
-            <div class="why-content">
-                <h3>CALABARZON Coverage</h3>
-                <p>Serving Cavite, Laguna, Batangas, Rizal, and Quezon. Wherever your project is in the region, YANO is within reach.</p>
-            </div>
+        <div class="why-card" data-r data-d="3">
+            <div class="why-n">04</div>
+            <h3 class="why-title">Full Region Coverage</h3>
+            <p class="why-desc">Serving Cavite, Laguna, Batangas, Rizal, and Quezon. Wherever your project is, YANO is within reach.</p>
         </div>
     </div>
 </section>
 
-<!-- ── GALLERY ── -->
-<section id="gallery">
-    <div class="section-header">
+<!-- GALLERY -->
+<section id="gallery" class="sec-pad">
+    <div class="sec-header">
         <div>
-            <p class="section-eyebrow">Our Fleet</p>
-            <h2 class="section-title">Equipment Gallery</h2>
+            <p class="eyebrow" data-r>Our Fleet</p>
+            <h2 class="sec-title" data-r data-d="1">Equipment in Action</h2>
         </div>
-        <p class="section-subtitle">A look at our fleet in action across CALABARZON. Well-maintained machines ready for your toughest jobs.</p>
+        <p class="sec-desc" data-r>A look at our fleet across CALABARZON. Well-maintained machines ready for your toughest jobs.</p>
     </div>
-    <div class="gallery-grid fade-in">
-        <div class="gallery-item">
-            <img src="image.png" alt="YANO equipment at work"
-                 onerror="this.parentElement.classList.add('gallery-empty'); this.remove();">
-            <div class="overlay"></div>
+    <div class="gal-grid">
+        <div class="gal-item" data-r>
+            <img src="image.png" alt="YANO equipment at work" onerror="this.remove(); this.parentElement.classList.add('gal-empty'); this.parentElement.innerHTML='<span>Photo Coming Soon</span>';">
+            <div class="gal-overlay"></div>
         </div>
-        <div class="gallery-item">
-            <img src="image copy.png" alt="YANO heavy equipment"
-                 onerror="this.parentElement.classList.add('gallery-empty'); this.remove();">
-            <div class="overlay"></div>
+        <div class="gal-item" data-r data-d="1">
+            <img src="image copy.png" alt="YANO heavy equipment" onerror="this.remove(); this.parentElement.classList.add('gal-empty'); this.parentElement.innerHTML='<span>Photo Coming Soon</span>';">
+            <div class="gal-overlay"></div>
         </div>
-        <div class="gallery-item gallery-empty"><span>Photo Coming Soon</span></div>
-        <div class="gallery-item gallery-empty"><span>Photo Coming Soon</span></div>
-        <div class="gallery-item gallery-empty"><span>Photo Coming Soon</span></div>
+        <div class="gal-item gal-empty" data-r data-d="2"><span>Photo Coming Soon</span></div>
+        <div class="gal-item gal-empty" data-r data-d="3"><span>Photo Coming Soon</span></div>
+        <div class="gal-item gal-empty" data-r data-d="4"><span>Photo Coming Soon</span></div>
     </div>
 </section>
 
-<div class="caution-stripe"></div>
+<div class="stripe"></div>
 
-<!-- ── CONTACT ── -->
-<section id="contact">
-    <div class="section-header">
+<!-- CONTACT -->
+<section id="contact" class="sec-pad">
+    <div class="sec-header">
         <div>
-            <p class="section-eyebrow">Get In Touch</p>
-            <h2 class="section-title">Let's Start<br>Your Project</h2>
+            <p class="eyebrow" data-r>Get In Touch</p>
+            <h2 class="sec-title" data-r data-d="1">Let's Start<br>Your Project</h2>
         </div>
-        <p class="section-subtitle">Ready to rent? Send us an inquiry or call directly. We'll get back to you fast.</p>
+        <p class="sec-desc" data-r>Ready to rent? Send us an inquiry or call directly. We respond fast.</p>
     </div>
     <div class="contact-layout">
-        <div class="contact-info fade-in">
-            <div class="contact-info-item">
-                <span class="contact-info-label">Main Line</span>
-                <a href="tel:09171338462" class="contact-info-value">0917-133-8462</a>
+        <div class="cinfo" data-r>
+            <div class="cblock">
+                <p class="clabel">Main Line</p>
+                <a href="tel:09171338462" class="cval">0917-133-8462</a>
             </div>
-            <div class="contact-info-item">
-                <span class="contact-info-label">Alternative</span>
-                <a href="tel:09171361046" class="contact-info-value">0917-136-1046</a>
+            <div class="cblock">
+                <p class="clabel">Alternative</p>
+                <a href="tel:09171361046" class="cval">0917-136-1046</a>
             </div>
-            <div class="contact-info-item">
-                <span class="contact-info-label">Email</span>
-                <a href="mailto:yanoequipment@gmail.com" class="contact-info-value email">yanoequipment@gmail.com</a>
+            <div class="cblock">
+                <p class="clabel">Email</p>
+                <a href="mailto:yanoequipment@gmail.com" class="cval cval-email">yanoequipment@gmail.com</a>
             </div>
-            <a href="https://wa.me/639171338462" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Message on WhatsApp
-            </a>
+            <div class="cactions">
+                <a href="https://wa.me/639171338462" target="_blank" rel="noopener noreferrer" class="btn-wa">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
             <div class="coverage">
                 <h4>Service Coverage</h4>
-                <p>Cavite &nbsp;·&nbsp; Laguna &nbsp;·&nbsp; Batangas &nbsp;·&nbsp; Rizal &nbsp;·&nbsp; Quezon</p>
+                <p>Cavite &nbsp;·&nbsp; Laguna &nbsp;·&nbsp; Batangas<br>Rizal &nbsp;·&nbsp; Quezon</p>
             </div>
         </div>
 
-        <form class="contact-form fade-in" id="inquiryForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Juan dela Cruz" required>
+        <form class="cform" id="inquiryForm" data-r data-d="1">
+            <div class="frow">
+                <div class="fgroup">
+                    <label class="flabel" for="name">Full Name</label>
+                    <input class="finput" type="text" id="name" name="name" placeholder="Juan dela Cruz" required>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="0917-XXX-XXXX" required>
+                <div class="fgroup">
+                    <label class="flabel" for="phone">Phone Number</label>
+                    <input class="finput" type="tel" id="phone" name="phone" placeholder="0917-XXX-XXXX" required>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="you@email.com">
+            <div class="fgroup">
+                <label class="flabel" for="email">Email Address</label>
+                <input class="finput" type="email" id="email" name="email" placeholder="you@email.com">
             </div>
-            <div class="form-group">
-                <label for="equipment">Equipment Needed</label>
-                <select id="equipment" name="equipment">
+            <div class="fgroup">
+                <label class="flabel" for="equipment">Equipment Needed</label>
+                <select class="fselect" id="equipment" name="equipment">
                     <option value="">Select equipment type...</option>
                     <option>Excavator</option>
                     <option>Bulldozer</option>
@@ -679,39 +780,37 @@
                     <option>Multiple / Not Sure</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="location">Project Location</label>
-                <input type="text" id="location" name="location" placeholder="City / Municipality in CALABARZON">
+            <div class="fgroup">
+                <label class="flabel" for="location">Project Location</label>
+                <input class="finput" type="text" id="location" name="location" placeholder="City / Municipality in CALABARZON">
             </div>
-            <div class="form-group">
-                <label for="message">Project Details</label>
-                <textarea id="message" name="message" rows="4"
-                    placeholder="Tell us about your project, timeline, and any special requirements..."></textarea>
+            <div class="fgroup">
+                <label class="flabel" for="message">Project Details</label>
+                <textarea class="ftextarea" id="message" name="message" rows="4" placeholder="Tell us about your project, timeline, and any special requirements..."></textarea>
             </div>
-            <button type="submit" class="form-submit">Send Inquiry</button>
+            <button type="submit" class="fsubmit">Send Inquiry &rarr;</button>
         </form>
     </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
     <div class="footer-brand">
-        <div class="brand">YANO</div>
-        <div class="tagline">Heavy Equipment Rental</div>
+        <div class="footer-badge"><span>YA</span></div>
         <p>Serving CALABARZON with reliable heavy equipment and skilled operators. Rain or shine, we keep your project moving.</p>
     </div>
-    <div class="footer-col">
-        <h4>Navigation</h4>
+    <div class="fcol">
+        <p class="fcol-title">Navigation</p>
         <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#why">Why YANO</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
-    <div class="footer-col">
-        <h4>Contact Us</h4>
+    <div class="fcol">
+        <p class="fcol-title">Contact Us</p>
         <ul>
             <li><a href="tel:09171338462">0917-133-8462</a></li>
             <li><a href="tel:09171361046">0917-136-1046</a></li>
@@ -721,64 +820,90 @@
     </div>
 </footer>
 <div class="footer-bottom">
-    <p>© 2025 YANO Heavy Equipment Rental. All rights reserved.</p>
+    <p>&copy; 2025 YANO Heavy Equipment Rental. All rights reserved.</p>
     <p>CALABARZON, Philippines</p>
 </div>
 
 <script>
     // Sticky nav
-    const navbar = document.getElementById('navbar');
+    const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        nav.classList.toggle('solid', window.scrollY > 60);
     }, { passive: true });
 
-    // Animated counters
-    function animateCounter(el, target, duration = 1600) {
-        const start = performance.now();
-        const update = (now) => {
-            const p = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.floor(eased * target) + '+';
-            if (p < 1) requestAnimationFrame(update);
-            else el.textContent = target + '+';
-        };
-        requestAnimationFrame(update);
+    // Hero subtle zoom
+    document.getElementById('hero').classList.add('loaded');
+
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const mmenu = document.getElementById('mmenu');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        mmenu.classList.toggle('open');
+    });
+    function closeMenu() {
+        burger.classList.remove('open');
+        mmenu.classList.remove('open');
     }
+    document.addEventListener('click', e => {
+        if (!nav.contains(e.target) && !mmenu.contains(e.target)) closeMenu();
+    });
 
-    let countersStarted = false;
-    const statsSection = document.getElementById('stats');
-    const statEls = document.querySelectorAll('.stat-number');
-
-    const statsObs = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !countersStarted) {
-            countersStarted = true;
-            statEls.forEach(el => animateCounter(el, parseInt(el.dataset.target)));
-        }
-    }, { threshold: 0.5 });
-    if (statsSection) statsObs.observe(statsSection);
-
-    // Fade-in on scroll
-    const fadeObs = new IntersectionObserver((entries) => {
+    // Active nav on scroll
+    const navAs = document.querySelectorAll('.nav-links a');
+    const secIds = ['hero','services','about','contact'];
+    const secEls = secIds.map(id => document.getElementById(id)).filter(Boolean);
+    const navIO = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                fadeObs.unobserve(e.target);
+                navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+    }, { threshold: 0.4, rootMargin: '-10% 0px -50% 0px' });
+    secEls.forEach(s => navIO.observe(s));
 
-    // Form submit
+    // Counters
+    function counter(el, target, dur = 1800) {
+        const t0 = performance.now();
+        const tick = now => {
+            const p = Math.min((now - t0) / dur, 1);
+            const v = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.floor(v * target) + '+';
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = target + '+';
+        };
+        requestAnimationFrame(tick);
+    }
+    let counted = false;
+    const statsEl = document.getElementById('stats');
+    if (statsEl) {
+        new IntersectionObserver(([e]) => {
+            if (e.isIntersecting && !counted) {
+                counted = true;
+                document.querySelectorAll('.stat-n').forEach(el => counter(el, +el.dataset.target));
+            }
+        }, { threshold: .5 }).observe(statsEl);
+    }
+
+    // Scroll reveal
+    new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('on'); }
+        });
+    }, { threshold: .08, rootMargin: '0px 0px -40px 0px' })
+    .observe && document.querySelectorAll('[data-r]').forEach(el => {
+        new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { e.target.classList.add('on'); }
+        }, { threshold: .08, rootMargin: '0px 0px -40px 0px' }).observe(el);
+    });
+
+    // Form
     document.getElementById('inquiryForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const btn = this.querySelector('.form-submit');
-        btn.textContent = 'Inquiry Sent! ✓';
-        btn.style.cssText = 'background:#25D366; color:white; transform:translateY(-2px);';
-        setTimeout(() => {
-            btn.textContent = 'Send Inquiry';
-            btn.style.cssText = '';
-            this.reset();
-        }, 3500);
+        const btn = this.querySelector('.fsubmit');
+        btn.textContent = 'Inquiry Sent ✓';
+        btn.style.cssText = 'background:#25D366;border-color:#25D366;color:#fff;transform:translateY(-2px);';
+        setTimeout(() => { btn.textContent = 'Send Inquiry →'; btn.style.cssText = ''; this.reset(); }, 3500);
     });
 </script>
 
